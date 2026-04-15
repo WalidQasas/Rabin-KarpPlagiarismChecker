@@ -5,7 +5,7 @@ import com.plagiarism.ds.LinearProbingHashTable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RabinKarpDetector implements PlagiarismDetector{
+public class RabinKarpHashTableDetector implements PlagiarismDetector{
      
 
     @Override
