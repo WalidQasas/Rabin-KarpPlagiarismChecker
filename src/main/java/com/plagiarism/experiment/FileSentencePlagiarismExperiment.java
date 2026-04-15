@@ -1,8 +1,8 @@
 package com.plagiarism.experiment;
 
-import com.plagiarism.algorithms.NaiveDetector;
+import com.plagiarism.algorithms.RabinKarpListDetector;
 import com.plagiarism.algorithms.PlagiarismDetector;
-import com.plagiarism.algorithms.RabinKarpDetector;
+import com.plagiarism.algorithms.RabinKarpHashTableDetector;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -17,8 +17,8 @@ public class FileSentencePlagiarismExperiment {
         String suspectText = Files.readString(Path.of(suspectPath), StandardCharsets.UTF_8);
         String originalText = Files.readString(Path.of(originalPath), StandardCharsets.UTF_8);
 
-        PlagiarismDetector naiveDetector = new NaiveDetector();
-        PlagiarismDetector rabinKarpDetector = new RabinKarpDetector();
+        PlagiarismDetector naiveDetector = new RabinKarpListDetector();
+        PlagiarismDetector rabinKarpDetector = new RabinKarpHashTableDetector();
 
         long naiveStart = System.currentTimeMillis();
         List<String> naiveMatchesRaw = naiveDetector.findMatches(suspectText, originalText, k);

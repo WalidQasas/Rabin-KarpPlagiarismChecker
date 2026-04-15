@@ -1,8 +1,8 @@
 package com.plagiarism.experiment;
 
 import com.plagiarism.algorithms.PlagiarismDetector;
-import com.plagiarism.algorithms.NaiveDetector;
-import com.plagiarism.algorithms.RabinKarpDetector;
+import com.plagiarism.algorithms.RabinKarpListDetector;
+import com.plagiarism.algorithms.RabinKarpHashTableDetector;
 import java.util.Random;
 
 public class PlagiarismExperiment {
@@ -16,8 +16,8 @@ public class PlagiarismExperiment {
             String text1 = generateRandomText(size);
             String text2 = generateRandomText(size);
 
-            long naiveTime = measureTime(new NaiveDetector(), text1, text2, k);
-            long rkTime = measureTime(new RabinKarpDetector(), text1, text2, k);
+            long naiveTime = measureTime(new RabinKarpListDetector(), text1, text2, k);
+            long rkTime = measureTime(new RabinKarpHashTableDetector(), text1, text2, k);
 
             System.out.printf("%4d | %10d | %15d\n", size, naiveTime, rkTime);
         }
