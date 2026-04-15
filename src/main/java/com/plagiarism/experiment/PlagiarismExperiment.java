@@ -3,12 +3,17 @@ package com.plagiarism.experiment;
 import com.plagiarism.algorithms.PlagiarismDetector;
 import com.plagiarism.algorithms.RabinKarpListDetector;
 import com.plagiarism.algorithms.RabinKarpHashTableDetector;
+
+import java.util.List;
 import java.util.Random;
 
 public class PlagiarismExperiment {
 
-    // compares the performance of Naive and Rabin-Karp detectors for different text sizes
+    // compares the two Rabin-Karp implementations on random character-level text
     public void runExperiment(int[] sizes, int k) {
+        System.out.println("Experiment 1: Random Character-Level Comparison");
+        System.out.println("k-gram size: " + k);
+        System.out.println("------------------------------------");
         System.out.println("Size | Naive (ms) | Rabin-Karp (ms)");
         System.out.println("------------------------------------");
 
@@ -37,4 +42,5 @@ public class PlagiarismExperiment {
         }
         return sb.toString();
     }
+
 }

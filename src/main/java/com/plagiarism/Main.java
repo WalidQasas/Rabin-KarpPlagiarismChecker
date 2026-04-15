@@ -14,7 +14,6 @@ public class Main {
         int k = 10; 
 
         System.out.println("Running Plagiarism Detection Experiments with k = " + k);
-        System.out.println("Comparing Naive O(n^2) vs Rabin-Karp O(n) average-case");
         
         experiment.runExperiment(sizes, k);
         System.out.println("------------------------------------");
@@ -26,9 +25,11 @@ public class Main {
         String originalFileE2 = "src/main/resources/documents/original-e2.txt";
 
         try {
+            k = 20;
             System.out.println("File-based Experiment E1 (short document pair)");
             fileExperiment.run(suspectFileE1, originalFileE1, k);
             System.out.println("------------------------------------");
+            k = 30;
             System.out.println("File-based Experiment E2 (larger document pair)");
             fileExperiment.run(suspectFileE2, originalFileE2, k);
             System.out.println("------------------------------------");

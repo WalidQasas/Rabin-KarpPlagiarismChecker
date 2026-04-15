@@ -20,6 +20,7 @@ public class FileSentencePlagiarismExperiment {
         PlagiarismDetector naiveDetector = new RabinKarpListDetector();
         PlagiarismDetector rabinKarpDetector = new RabinKarpHashTableDetector();
 
+        // I want to look at the matches - no point using measureTime here
         long naiveStart = System.currentTimeMillis();
         List<String> naiveMatchesRaw = naiveDetector.findMatches(suspectText, originalText, k);
         long naiveTime = System.currentTimeMillis() - naiveStart;
@@ -28,27 +29,14 @@ public class FileSentencePlagiarismExperiment {
         List<String> rkMatchesRaw = rabinKarpDetector.findMatches(suspectText, originalText, k);
         long rkTime = System.currentTimeMillis() - rkStart;
 
-        Set<String> naiveMatches = new LinkedHashSet<>(naiveMatchesRaw);
-        Set<String> rkMatches = new LinkedHashSet<>(rkMatchesRaw);
-
         System.out.println("File-based Plagiarism Experiment");
         System.out.println("Suspect file : " + suspectPath);
         System.out.println("Original file: " + originalPath);
         System.out.println("k-gram size  : " + k);
-        System.out.println();
-
-        System.out.println("Unique matches found by Rabin-Karp (" + rkMatches.size() + "):");
-        for (String match : rkMatches) {
-            System.out.println("- " + match);
-        }
-        if (rkMatches.isEmpty()) {
-            System.out.println("- No matches found.");
-        }
-
+        System.out.println("Last match found: " + naiveMatchesRaw.get(naiveMatchesRaw.size() - 1));
         System.out.println();
         System.out.println("Runtime Comparison:");
         System.out.printf("Naive nested comparison   : %d ms%n", naiveTime);
         System.out.printf("Hash table lookup         : %d ms%n", rkTime);
-        System.out.println("Match sets identical      : " + naiveMatches.equals(rkMatches));
     }
 }
